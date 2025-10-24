@@ -10,7 +10,7 @@
 # For example, 'di=01;34' sets the color for directories to bold blue
 # (01 is bold, and 34 is blue).
 # 
-# Use the function 'print_ls_colors' (defined below) to display the LS_COLORS variable
+# Use the function 'print-ls-colors' (defined below) to display the LS_COLORS variable
 # with each segment on its own line and the corresponding color code applied.
 # (Optionally, you can pipe the output to `strip_file_types` to remove file types like *.tgz).
 #
@@ -52,7 +52,7 @@ apply_color_codes() {
 # Print the LS_COLORS environment variable with each segment on its own line,
 # and apply the corresponding color codes to each segment.
 # This makes it easier to read and understand the color codes.
-print_ls_colors() {
+print-ls-colors() {
      echo $LS_COLORS | separate_by_lines | apply_color_codes
 }
 
@@ -65,10 +65,10 @@ help() {
 
 while getopts "fh" opt; do
      case $opt in
-          f) print_ls_colors; exit 0 ;;
+          f) print-ls-colors; exit 0 ;;
           h) help; exit 0 ;;
           \?) echo "Invalid option: -$OPTARG" >&2 ;;
      esac
 done
 
-print_ls_colors | strip_file_types
+print-ls-colors | strip_file_types
